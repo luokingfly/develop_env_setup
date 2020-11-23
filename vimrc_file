@@ -1,0 +1,189 @@
+syntax enable
+syntax on
+let g:WinMangerWindowLayout='FileExplorer|TagList'
+nmap wm :WMToggle<cr>
+set modeline
+filetype indent plugin on 
+"vundle
+filetype off
+"set tab to 4 spaces
+set tabstop=4 shiftwidth=4 expandtab
+
+set rtp+=~/.vim/bundle/Vundle.vim
+"vundle vundle#begin() and vundle#end() 
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'majutsushi/tagbar'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+"Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'derekwyatt/vim-fswitch'
+"Plugin 'kshenoy/vim-signature'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'kien/ctrlp.vim' "clone it
+"Plugin 'wincent/command-t'
+"Plugin 'easymotion/vim-easymotion'
+"Plugin 'ronakg/quickr-cscope.vim' "change code, set cscopequickfix=
+"Plugin 'vim-utils/vim-alt-mappings' "change code, keep range(35,61)+range(97,122)
+"Plugin 'joereynolds/gtags-scope' "gtags
+"Plugin 'drmingdrmer/vim-tabbar'
+"Plugin 'drmikehenry/vim-fixkey'
+call vundle#end()
+filetype plugin indent on
+
+map <F8> :TagbarToggle<CR>
+
+"set nocompatible
+"filetype off                   " required! 
+"
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+"" let Vundle manage Vundle
+"" required!
+"Bundle 'gmarik/vundle'
+"Bundle 'majutsushi/tagbar'
+"" My Bundles here:
+"Bundle 'taglist.vim' 
+"
+"filetype plugin indent on     " required!
+
+"设置tagbar出现在左边
+let tagbar_left=1
+"设置标签窗口宽度
+let tagbar_width=25
+let tagbar_sort = 0
+
+"设置ctags对哪些代码标识生产标签
+let g:tagbar_type_cpp = {
+    \ 'kinds' : [
+        \ 'c:classes:0:1',
+        \ 'd:macros:0:1',
+        \ 'e:enumerators:0:0',
+        \ 'f:functions:0:1',
+        \ 'g:enumeration:0:1',
+        \ 'm:members:0:1',
+        \ 'n:namespaces:0:1',
+        \ 'p:functions_prototypes:0:1',
+        \ 's:structs:0:1',
+        \ 't:typedefs:0:1',
+        \ 'u:unions:0:1',
+        \ 'v:global:0:1',
+        \ 'x:external:0:1',
+    \ ],
+    \ 'sro'        : '::',
+    \ 'kind2scope' : {
+        \ 'g' : 'enum',
+        \ 'n' : 'namespace',
+        \ 'c' : 'class',
+        \ 's' : 'struct',
+        \ 'u' : 'union',
+    \ },
+    \ 'scope2kind' : {
+        \ 'enum'   : 'g',
+        \ 'namespace' : 'n',
+        \ 'class'  : 'c',
+        \ 'struct' : 's',
+        \ 'union'  : 'u'
+    \ }
+\ }
+" \ 'l:local:0:1',
+
+"使用nerd tree查看工程文件
+"设置nerdtree窗口宽度
+let NERDTreeWinSize=30
+"设置NERDTree窗口位置
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+if has("vms")
+  set nobackup          " do not keep a backup file, use versions instead
+else
+  set backup            " keep a backup file (restore to previous version)
+"  set undofile          " keep an undo file (undo changes after closing)
+endif
+
+:colorscheme putty
+
+set nu
+filetype on
+syntax enable
+syntax on
+set history=1000 
+set background=dark
+set autoindent
+set smartindent
+"set tabstop=4
+"set expandtab
+set shiftwidth=4
+set showmatch
+set guioptions-=T
+set vb t_vb=
+set ruler
+set nohls
+set incsearch
+set hlsearch
+
+"#set tags+=/ws-kl/path/tags
+set tags+=/ws-kl/path/tags
+set tags+=/ws-kl/path/diag/tags
+set tags+=/ws-kl/test_repo/appalachia/tags
+set tags+=/ws-kl/new_inno/innovium-sdk/innovium/tags
+set tags+=/ws-kl/genfu/tags
+set tags+=/ws-kl//ws-kl/linux-kernel-4.10.17
+"set tags+=/ws-kl/path/tahoe_rsync_root/tags
+"if filereadable("/ws-kl/kernel-4.10/linux-kernel-4.10.17/tags")
+"  set tags+=/ws-kl/kernel-4.10/linux-kernel-4.10.17/tags
+"endif
+"if filereadable("/ws-kl/sdk-xgs-robo-6.4.8/tags")
+"  set tags+=/ws-kl/sdk-xgs-robo-6.4.8/tags
+"endif
+
+let Tlist_Ctags_Cmd='~/local/bin/ctags'
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1
+:nnoremap <C-]> g<C-]>
+
+" winmanager
+let g:winManagerWindowLayout='FileExplorer|TagList'
+"let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
+let g:persistentBehaviour=0
+"let g:bufExplorerMaxHeight=30
+nmap wf :FirstExplorerWindow<cr>
+nmap wb :BottomExplorerWindow<cr>
+nmap wm :WMToggle<cr>
+
+" MiniBufferExplorer
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplorerMoreThanOne=1
+
+" SelectBuf
+nmap <unique> <silent> qq <Plug>SelectBuf
+
+" BufExplorer
+nmap tt :BufExplorer<cr>
+nmap bs :BufExplorerHorizontalSplit<cr>
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerSortBy='mru'
+let g:bufExplorerShowRelativePath=0
+let g:bufExplorerSplitBelow=0
+let g:bufExplorerSplitHorzSize=5
+
+
+" cscope
+":cs add /ws-kl/path/cscope.out /ws-kl/path
+nmap cs :cs add /ws-kl/kernel-4.10/linux-kernel-4.10.17/cscope.out /ws-kl/kernel-4.10/linux-kernel-4.10.17<cr>
+:set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
